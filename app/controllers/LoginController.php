@@ -13,7 +13,11 @@ class LoginController extends Controller{
         if(isset($_POST["username"])){
             $user=User::where("username",$_POST["username"])->first();
             if($user && password_verify($_POST["password"],$user->password)){
-                echo "user ok";
+                session_start();
+                $_SESSION["user_id"]=$user->user_id;
+                $_SESSION["username"]=$user->username;
+                header("Location: ".base_url()."admin");
+                
             }else{
                $error="User or password incorrect";
                $this->view("login",[$error]);
