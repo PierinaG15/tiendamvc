@@ -17,10 +17,10 @@ class LoginController extends Controller{
                 $_SESSION["user_id"]=$user->user_id;
                 $_SESSION["username"]=$user->username;
                 header("Location: ".base_url()."admin");
-                
+
             }else{
-               $error="User or password incorrect";
-               $this->view("login",[$error]);
+                $error="User or pass incorrect";
+                $this->view("login",[$error]);
             }
             //var_dump($user->password);
             
@@ -35,17 +35,6 @@ class LoginController extends Controller{
         $this->view("register");
     }
 
-    public function json(){
-        $actores=Actor::where("first_name","like","P%")->get();
-        $datos=[
-            "mensaje"=>"Listado actores empiezan P",
-            "listado"=>$actores
-        ];
-        $json=json_encode($datos);
-        header('Content-Type: application/json');
-        echo $json;
-        exit();
-    }
 
 }
 ?>
