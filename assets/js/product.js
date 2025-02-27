@@ -28,13 +28,20 @@ fetch("http://localhost/tiendamvc/api/providers")
 
 document.getElementById("form").onsubmit = function (e) {
     e.preventDefault();
-    let product={
+    let product = {
         'name': document.getElementById("name").value,
-        'description':document.getElementById("description").value,
-        'category_id':document.getElementById("category").value,
-        'provider_id':document.getElementById("provider").value,
-        'stock':document.getElementById("stock").value,
-        'price':document.getElementById("price").value
+        'description': document.getElementById("description").value,
+        'category_id': document.getElementById("category").value,
+        'provider_id': document.getElementById("provider").value,
+        'stock': document.getElementById("stock").value,
+        'price': document.getElementById("price").value
     }
-    console.log(product);
+    //ToDo: Enviar la información al servidor
+    fetch("http://localhost/tiendamvc/api/products", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    
 }
