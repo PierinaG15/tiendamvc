@@ -39,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label for="">Provider</label>
-                <select id="provider" required>
+                <select id="provider" required placeholder="Choose...">
                     <option selected>Choose...</option>
 
                 </select>
@@ -47,17 +47,34 @@
             <div class="row">
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="stock">Stock</label>
-                    <input type="number" min="0" class="form-control" id="stock" placeholder="Stock">
+                    <input required type="number" min="0" class="form-control" id="stock" placeholder="Stock">
                 </div>
                 <div class="form-group col-md-6 col-sm-12">
                     <label for="price">Price</label>
-                    <input type="number" min="0" class="form-control" id="price" placeholder="Price">
+                    <input required type="number" min="0" class="form-control" id="price" placeholder="Price">
                 </div>
             </div>
 
 
             <button type="submit" class="btn col-12 btn-primary">Save</button>
         </form>
+        <hr>
+        <table class="table table-dark table-striped w-auto mx-auto">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Provider</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Price</th>
+                </tr>
+            </thead>
+            <tbody id="products">   
+
+            </tbody>
+        </table>
     </div>
 </body>
 

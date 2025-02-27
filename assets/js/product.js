@@ -28,20 +28,55 @@ fetch("http://localhost/tiendamvc/api/providers")
 
 document.getElementById("form").onsubmit = function (e) {
     e.preventDefault();
-    let product = {
+    let product={
         'name': document.getElementById("name").value,
-        'description': document.getElementById("description").value,
-        'category_id': document.getElementById("category").value,
-        'provider_id': document.getElementById("provider").value,
-        'stock': document.getElementById("stock").value,
-        'price': document.getElementById("price").value
+        'description':document.getElementById("description").value,
+        'category_id':document.getElementById("category").value,
+        'provider_id':document.getElementById("provider").value,
+        'stock':document.getElementById("stock").value,
+        'price':document.getElementById("price").value
     }
-    //ToDo: Enviar la información al servidor
-    fetch("http://localhost/tiendamvc/api/products", {
+    //ToDO: Validar los datos
+    fetch("http://localhost/tiendamvc/api/newproduct",{
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
+        body: JSON.stringify(product),
+        headers:{
+            'Content-Type': 'application/x-www-form-urlencoded'
         }
     })
-    
+    .then(data => data.json())
+    .then(datos => {
+        showproducts(datos);
+    })
+}
+
+
+function showproducts(datos){   
+    let tbody = document.getElementById("products");
+    tbody.innerHTML = "";
+    datos.forEach(element => {
+        let tr = document.createElement("tr");
+        let td = document.createElement("td");
+        td.textContent = element.product_id;
+        tr.appendChild(td);
+        td = document.createElement("td");
+        td.textContent = element.name;
+        tr.appendChild(td);
+        td = document.createElement("td");
+        td.textContent = element.description;
+        tr.appendChild(td);
+        td = document.createElement("td");
+        td.textContent = element.category.name;
+        tr.appendChild(td);
+        td = document.createElement("td");
+        td.textContent = element.provider.name;
+        tr.appendChild(td);
+        td = document.createElement("td");
+        td.textContent = element.stock;
+        tr.appendChild(td);
+        td = document.createElement("td");
+        td.textContent = element.price;
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+    });
 }
